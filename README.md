@@ -26,3 +26,51 @@
 - Install dotenv (protect client secret, eg: API key)
 - client side: edit package.json so it won't thru an error while using CI/CD
   "test": "react-scripts test --passWithNoTests"
+
+- Copy the files into backbackend directory
+- Install hunsky to have a cleaner code in the repository. It is not working... I'll check this out later
+  Prettier organize our code and make it more readable
+  https://prettier.io
+
+- Always check the offitial docs
+
+Steps:
+
+1. Install prettier:
+   npm install --save-dev --save-exact prettier
+2. Run this command in CLI:
+   npm install --save-dev husky lint-staged
+   npx husky init
+   node --eval "fs.writeFileSync('.husky/pre-commit','npx lint-staged\n')"
+3. In package.json, right after "eslintConfig" script:
+   {
+   "lint-staged": {
+   "\*_/_": "prettier --write --ignore-unknown"
+   }
+   }
+
+# 29/10/2024
+
+Create the folders and files for the ap architecture:
+server.js
+app.js
+models/
+routes/api.js
+routes/trips/
+routes/reviews/
+
+# 4/11/2024
+
+I could do almost nothing last week, my wife and daugter were full time home!
+
+1.  work on:
+
+- reviews.mongo.js => schemas in mongoose to for the collection
+- reviews.model.js => functions that will be called in the the controllers
+- reviews.controllers.js
+- reviews.router.js
+- api.js => nady in we want to update the version without break the app
+- app.js => separation of concerns, business logic outside the server
+- server.js
+
+* It could be overwhelming all this steps. The recommendation is start from top to button ( start in the server all the way down to the revies.mongo). I find this way a bit annoying coz then I need to call functions that has not been yet created. I prefer to do it the other way around
