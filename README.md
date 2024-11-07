@@ -74,3 +74,7 @@ I could do almost nothing last week, my wife and daugter were full time home!
 - server.js
 
 * It could be overwhelming all this steps. The recommendation is start from top to button ( start in the server all the way down to the revies.mongo). I find this way a bit annoying coz then I need to call functions that has not been yet created. I prefer to do it the other way around
+
+# 6/11/2024
+
+Review and Trips route implemented and working properly

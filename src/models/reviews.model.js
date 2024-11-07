@@ -6,10 +6,6 @@ async function getAllReviews(){
     }).sort({createdAt:-1})
 }
 
-async function getReview() {
-    console.log('get review')
-
-}
 
 async function addReview(review) {
     console.log('add review')
@@ -17,14 +13,10 @@ async function addReview(review) {
     await Review.create(review);
 }
 
-async function deleteReview() {
 
-}
 
 
   module.exports = {
     getAllReviews,
-    getReview,
     addReview,
-    deleteReview
   }
