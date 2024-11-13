@@ -28,26 +28,6 @@
   "test": "react-scripts test --passWithNoTests"
 
 - Copy the files into backbackend directory
-- Install hunsky to have a cleaner code in the repository. It is not working... I'll check this out later
-  Prettier organize our code and make it more readable
-  https://prettier.io
-
-- Always check the offitial docs
-
-Steps:
-
-1. Install prettier:
-   npm install --save-dev --save-exact prettier
-2. Run this command in CLI:
-   npm install --save-dev husky lint-staged
-   npx husky init
-   node --eval "fs.writeFileSync('.husky/pre-commit','npx lint-staged\n')"
-3. In package.json, right after "eslintConfig" script:
-   {
-   "lint-staged": {
-   "\*_/_": "prettier --write --ignore-unknown"
-   }
-   }
 
 # 29/10/2024
 
@@ -78,3 +58,24 @@ I could do almost nothing last week, my wife and daugter were full time home!
 # 6/11/2024
 
 Review and Trips route implemented and working properly
+
+# 11/11/2024
+
+**integration test**
+npm install jest --save-dev
+npm install supertest --save-dev
+
+# 13/11/2024
+
+- Testing for reviews route is ready!!!!!
+
+I tried to make it mocking the data base but that was a pain in the ass.
+
+src/routes/reviews/reviews.test.js:
+
+I run 4 different tests:
+
+- 201 respond with the correct data
+- 400 respond with a string istead of a nummber as a rate
+- 400 respond with missing property
+- 400 respond with a non existance country

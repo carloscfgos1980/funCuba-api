@@ -1,22 +1,40 @@
+const { isNumber } = require('util');
 const {
     getAllReviews,
     addReview,
 } = require('../../models/reviews.model');
 
-async function httpGetAllReviews(req, res) {
+const country_list = require('../../services/countries')
+
+async function httpGetAllReviews(res) {
 return res.status(200).json(await getAllReviews());
 };
 
 async function httpAddReview(req, res) {
     const review = req.body
-    console.log(review)
+    console.log('review',review)
     const {name, country, feedId, type, rate, comment} = review;
+
+
     if(!name || !country || !feedId || !type || !rate || !comment){
-        res.status(400);
-        throw new Error('All fields are mandatory!')
+        return res.status(400).json({
+            error: "Missing required review property"
+        })
+    };
+    if(typeof(rate)!=='number'){  
+        return res.status(400).json({
+            error: "rate must be a number!"
+        })
+    };
+    const countryExist = country_list.includes(country)
+    if(!countryExist){
+        return res.status(400).json({
+            error: "This country does not exist!"
+        })
     }
+
     await addReview(review);
-    return res.status(201).json(review)
+    return res.status(201).json(review);
 };
 
 
