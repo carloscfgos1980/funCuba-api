@@ -1,4 +1,3 @@
-const { isNumber } = require('util');
 const {
     getAllReviews,
     addReview,
@@ -6,15 +5,13 @@ const {
 
 const country_list = require('../../services/countries')
 
-async function httpGetAllReviews(res) {
-return res.status(200).json(await getAllReviews());
+async function httpGetAllReviews(req, res) {
+    return res.status(200).json(await getAllReviews());
 };
 
 async function httpAddReview(req, res) {
     const review = req.body
-    console.log('review',review)
     const {name, country, feedId, type, rate, comment} = review;
-
 
     if(!name || !country || !feedId || !type || !rate || !comment){
         return res.status(400).json({

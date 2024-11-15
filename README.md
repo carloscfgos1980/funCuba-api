@@ -79,3 +79,7 @@ I run 4 different tests:
 - 400 respond with a string istead of a nummber as a rate
 - 400 respond with missing property
 - 400 respond with a non existance country
+
+# 15/11/2024
+
+I Created 2 files for integration tests. They work!

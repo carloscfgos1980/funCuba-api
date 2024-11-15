@@ -2,6 +2,7 @@ const {
     getAllTrips,
     addTrip,
 } = require('../../models/trips.model');
+const country_list = require('../../services/countries');
 
 async function httpGetAllTrips(req, res) {
 return res.status(200).json(await getAllTrips());
@@ -12,6 +13,7 @@ async function httpAddTrip(req, res) {
     console.log(trip);
     const {totalAmount, reservationId, tripDateStart, tripDateEnd} = trip;
     const {name, lastName, country, email} = trip.clientData;
+
     if(!name || !lastName || !country || !email || !totalAmount || !reservationId){
         res.status(400);
         throw new Error('All fields are mandatory!')
@@ -26,18 +28,24 @@ async function httpAddTrip(req, res) {
         throw new Error('Invalid reservation id, must be a number!')
 
     }
+    const countryExist = country_list.includes(country)
+    if(!countryExist){
+        return res.status(400).json({
+            error: "This country does not exist!"
+        })
+    }
     if(!email.includes('@')){
         res.status(400);
         throw new Error('Invalid email!')        
     }
-    tripDateStart = new Date(tripDateStarte);
-    if(isNaN(tripDateStart)){
+    const startTripDate = new Date(tripDateStart);
+    if(isNaN(startTripDate)){
         return res.status(400).json({
             error: 'Invalid start trip date'
         })
     }
-    tripDateEnd = new Date(tripDateEnd);
-    if(isNaN(tripDateEnd)){
+    const endTripDate = new Date(tripDateEnd);
+    if(isNaN(endTripDate)){
         return res.status(400).json({
             error: 'Invalid end trip date'
         })

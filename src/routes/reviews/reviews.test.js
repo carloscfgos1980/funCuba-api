@@ -13,39 +13,48 @@ describe('Reviews API', ()=>{
         await mongoDisconnect();
     });
 
-    describe('Test POST / review', ()=>{
-   const completeReview = {
-        feedId: "luisa",
-        name: "Carlos",
-        type: "airB",
-        rate: 3,
-        comment: "super super super super ",
-        country: "Mexico"
-    }
-    const incompleteReview = {
-        type: "airB",
-        rate: 3,
-        comment: "super super super super super super super super super super super super super super super super super super super super super super super super super super super super super super ",
-        name: "Maikol",
-        country: "Mexico"
-    };
-    const ReviewWrongRrate = {
-        feedId: "luisa",
-        type: "airB",
-        rate: "3",
-        comment: "super super super super super super super super super super super super super super super super super super super super super super super super super super super super super super ",
-        name: "Maikol",
-        country: "Mexico"
-    };
+    describe('Test GET / reviews', ()=>{
+    test('It should respond with 200 success', async ()=>{
+        const response = await request(app)
+        .get('/v1/reviews')
+        .expect('Content-Type', /json/)        
+        .expect(200);
+        });
+    });
 
-    const reviewWithNonExistanceCountry = {
-        feedId: "luisa",
-        type: "airB",
-        rate: 5,
-        comment: "super super super super super super super super super super super super super super super super super super super super super super super super super super super super super super ",
-        name: "Maikol",
-        country: "Guantanamo"
-    };
+    describe('Test POST / review', ()=>{
+        const completeReview = {
+            feedId: "luisa",
+            name: "Carlos",
+            type: "airB",
+            rate: 3,
+            comment: "super super super super ",
+            country: "Mexico"
+        }
+        const incompleteReview = {
+            type: "airB",
+            rate: 3,
+            comment: "super super super super super super super super super super super super super super super super super super super super super super super super super super super super super super ",
+            name: "Maikol",
+            country: "Mexico"
+        };
+        const ReviewWrongRrate = {
+            feedId: "luisa",
+            type: "airB",
+            rate: "3",
+            comment: "super super super super super super super super super super super super super super super super super super super super super super super super super super super super super super ",
+            name: "Maikol",
+            country: "Mexico"
+        };
+
+        const reviewWithNonExistanceCountry = {
+            feedId: "luisa",
+            type: "airB",
+            rate: 5,
+            comment: "super super super super super super super super super super super super super super super super super super super super super super super super super super super super super super ",
+            name: "Maikol",
+            country: "Guantanamo"
+        };
         test('It should respond with 201 success', async ()=>{
             const response = await request(app)
                 .post('/v1/reviews')
