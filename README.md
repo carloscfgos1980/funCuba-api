@@ -83,3 +83,16 @@ I run 4 different tests:
 # 15/11/2024
 
 I Created 2 files for integration tests. They work!
+
+# 18/11/2024
+
+Test with post man with non existance country and it works fine
+
+**email sending**
+npm install mailtrap
+
+I took me a while to make the email work. I had to buy a CDN and a email for this domain:
+verification@funcuba.it.com
+
+service/email.js => the code from this website:
+https://mailtrap.io/sending/domains/de6f33e3-1ce3-48b4-9324-b3027d65013e?current_tab=domain_verification&stream=bulk

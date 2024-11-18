@@ -1,3 +1,4 @@
+const { sendEmail } = require('../services/emails');
 const Trip = require('./trips.mongo');
 
 async function getAllTrips(){
@@ -8,6 +9,7 @@ async function getAllTrips(){
 
 async function addTrip(trip) {
     await Trip.create(trip);
+    await sendEmail(trip.clientData.email, trip.reservationId)
 }
 
 module.exports = {
